@@ -35,7 +35,7 @@ export default function WithSubnavigation() {
     const { isOpen, onToggle } = useDisclosure();
   
     return (
-      <Box position={'fixed'} width={'100%'} >
+      <Box position={'fixed'} width={'100%'} paddingTop={"140px"}>
         <Flex /* bg={useColorModeValue("#C4C09D", "gray.800")} */ color={useColorModeValue("gray.600", "white")} minH={"60px"} py={{ base: 2 }} px={{ base: 4 }} borderBottom={4} borderStyle="solid" borderColor={'rgba(0, 0, 0, 0)'} align="center" bgGradient="linear(to-l, rgba(196, 192, 157, 0.3), rgba(181, 214, 178, 0.5))" >
           <Flex flex={{ base: 1, md: "auto" }} ml={{ base: -2 }} display={{ base: "flex", md: "none" }} >
             <IconButton onClick={onToggle} icon={isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />} variant={"ghost"} aria-label={"Toggle Navigation"} />
