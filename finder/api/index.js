@@ -3,7 +3,7 @@ const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
 const bodyparser = require("body-parser");
-//const routes = require("./routes/index");
+const routes = require("./routes/index");
 //const authRoutes = require('./routes/auth');
 
 // Para que funcione el .env
@@ -29,7 +29,7 @@ app.use(express.json());
 
 // Conexion a base de datos MongoDB Atlas 
 mongoose
-  .connect('mongodb+srv://ignacio-garcia-riestra:78Elsenor@moviefinder.dicd8.mongodb.net/userdb?retryWrites=true&w=majority', {
+  .connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
    
@@ -39,7 +39,7 @@ mongoose
 
 // Importo routes
 //app.use("/api/user", authRoutes);
-//app.use("/api", routes);
+app.use("/api", routes);
 
 // Route middlewares
 app.use(morgan("tiny"));

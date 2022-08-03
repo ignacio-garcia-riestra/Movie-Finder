@@ -10,8 +10,9 @@ export default function Gallery () {
   const [trendMovies, setTrendMovies] = useState([])
 
   const loadMovies = () => {
-    axios.get(`https://api.themoviedb.org/3/trending/movie/week?api_key=86982a86d58f890410a6e2810d43832b`)
+    axios.get(`http://localhost:8000/api`)
     .then(res => {
+      console.log(res.data)
       setTrendMovies(res.data.results)
     })    
     .catch(error => console.log(error));

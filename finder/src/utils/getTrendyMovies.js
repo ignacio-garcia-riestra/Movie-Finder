@@ -1,5 +1,5 @@
-import axios from "axios";
-import { useState } from "react";
+/* import axios from "axios";
+import { useState } from "react"; */
 
 /* export function getTrendyMovies(){
     axios
@@ -11,7 +11,7 @@ import { useState } from "react";
       });
 } */
 
-export function useTrendyMovies () {
+/* export function useTrendyMovies () {
   const [trendMovies, setTrendMovies] = useState([])
   axios.get(`https://api.themoviedb.org/3/trending/movie/week?api_key=86982a86d58f890410a6e2810d43832b`)
     .then(res => {
@@ -19,4 +19,4 @@ export function useTrendyMovies () {
       setTrendMovies(res.data.results)
     })    
     .catch(error => console.log(error));
-}
+} */

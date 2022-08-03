@@ -1,9 +1,10 @@
 const express = require("express");
-const movies = require('./movies')
-//const users = require('./users')
 const router = express.Router();
+const axios = require("axios");
+//const releases = require('./releases')
+//const users = require('./users')
 
-router.use('/movies', movies)
+//router.use('/releases', releases)
 //router.use('/users', users)
 
 router.get("/", (req, res, next) => {
