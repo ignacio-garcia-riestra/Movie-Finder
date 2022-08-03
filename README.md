@@ -1,5 +1,7 @@
 # Movie-Finder - Buscador de películas, series y personalidades del espectáculo
 
+![Screenshot](https://raw.githubusercontent.com/ignacio-garcia-riestra/Movie-Finder/main/MovieFinder02.png)
+
 ## Acerca del Proyecto
 
 Movie-Finder es una aplicación para buscar contenidos y personas del mundo del espectáculo, consumiendo la API TMDB. Con Movie-Finder accedes a las 20 películas más populares de la semana ni bien cargas la página. También puedes buscar por separado películas, series o personas a partir de una alabra clave.
