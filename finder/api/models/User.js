@@ -27,7 +27,7 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: true,
-      minlength: 4,
+      minlength: 8,
       maxlength: 255,
     },
     /* birthdate: {
@@ -36,7 +36,7 @@ const userSchema = new Schema(
       min: 8,
     }, */
     
-    resetLink: {type: String, default: ""},//guarda el token de recupero de contraseña
+    //resetLink: {type: String, default: ""},//guarda el token de recupero de contraseña
     favorites: [{
       type: Schema.Types.ObjectId,
       ref: "Release",

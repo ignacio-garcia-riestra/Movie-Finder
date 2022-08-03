@@ -4,7 +4,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const bodyparser = require("body-parser");
 const routes = require("./routes/index");
-//const authRoutes = require('./routes/auth');
+const auth = require('./routes/auth');
 
 // Para que funcione el .env
 require("dotenv").config();
@@ -38,7 +38,7 @@ mongoose
   .catch((err) => console.log(err));
 
 // Importo routes
-//app.use("/api/user", authRoutes);
+app.use("/api/user", auth);
 app.use("/api", routes);
 
 // Route middlewares
