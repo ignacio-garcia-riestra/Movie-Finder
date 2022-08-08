@@ -1,6 +1,6 @@
 # Movie-Finder - Buscador de películas, series y personalidades del espectáculo
 
-![Screenshot](https://raw.githubusercontent.com/ignacio-garcia-riestra/Movie-Finder/main/MovieFinder02.png)
+![MovieFinder02](https://user-images.githubusercontent.com/99486767/182724802-3d85c311-94db-4c69-af57-b064f1065e09.png)
 
 ## Acerca del Proyecto
 
