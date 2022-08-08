@@ -35,8 +35,8 @@ export default function Gallery () {
           showStatus={false}
           infiniteLoop
         >
-        {trendMovies.map(movie => (
-          <div>
+        {trendMovies.map((movie, index) => (
+          <div key={index}>
             {console.log(trendMovies)}
             <img
               className="carousel-img" 

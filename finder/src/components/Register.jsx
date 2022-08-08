@@ -37,7 +37,10 @@ const Register = () => {
       email: email.value,
       password: password.value,
     })
-    .then(() => navigate('/login'))
+    .then((tok) => {
+      console.log(tok.data)
+      //navigate('/login')
+    })
   }
 
   return (
