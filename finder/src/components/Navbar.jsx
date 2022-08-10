@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link as ReactRouter } from "react-router-dom";
 import { useNavigate } from 'react-router';
-import { chakra, Box, Flex, Image, Text, IconButton, Button, Stack, Popover, PopoverTrigger, useColorModeValue, Link, useDisclosure, Center } from "@chakra-ui/react";
+import { chakra, Box, Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent,
+  DrawerCloseButton, Flex, Image, Input, Text, IconButton, Button, Stack, Popover, PopoverTrigger, useColorModeValue, Link, useDisclosure, Center } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import Register from './Register';
 //import logo from "../assets/logo.jpg";
 import { useDispatch } from 'react-redux'
 //import { userLogout } from '../store/user';
@@ -13,6 +15,9 @@ export default function WithSubnavigation() {
     const user = localStorage.getItem('user')
       ? JSON.parse(localStorage.getItem('user'))
       : {}
+
+    const { isOpen, onOpen, onClose, onToggle } = useDisclosure()
+    const btnRef = React.useRef()
   
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -30,9 +35,7 @@ export default function WithSubnavigation() {
   
     axios.get(`http://localhost:3001/api/carts/${cart.id}`)
       .then(res => setProducts(res.data[0].products)) */
-  
-  
-    const { isOpen, onToggle } = useDisclosure();
+
   
     return (
       <Box position={'fixed'} width={'100%'} paddingTop={"140px"}>
@@ -81,12 +84,38 @@ export default function WithSubnavigation() {
   
             <Stack flex={{ base: 1, md: 0 }} justify={"flex-end"} direction={"row"} spacing={6}>
               {/* BOTON REGISTER  */}
-              <Link as={ReactRouter} to="/register">
-                <Button display={{ base: "none", md: "inline-flex" }} m={5} mr={-5} fontSize={"m"} fontWeight={600} color={"#C4C09D"} bg={"#1A1A1A"} _hover={{ bg: "#1A1A1A" }}>
+              {/* <Link as={ReactRouter} to="/register"> */}
+              <>
+                <Button ref={btnRef} display={{ base: "none", md: "inline-flex" }} m={5} mr={-5} fontSize={"m"} fontWeight={600} color={"#C4C09D"} bg={"#1A1A1A"} _hover={{ bg: "#1A1A1A" }} onClick={onOpen} >
                   Register
                 </Button>
-              </Link>
-  
+                <Drawer
+                  isOpen={isOpen}
+                  placement='right'
+                  onClose={onClose}
+                  //finalFocusRef={btnRef}
+                  size={'md'}
+                  bg={'rgba(196, 192, 157, 0.3)'}
+                >
+                  <DrawerOverlay />
+                  <DrawerContent bg={'rgba(0, 0, 0, 0)'}>
+                    <DrawerCloseButton mr={3} />
+                    {/* <DrawerHeader>Create your account</DrawerHeader> */}
+
+                    <DrawerBody>
+                      <Register />
+                    </DrawerBody>
+
+                    {/* <DrawerFooter>
+                      <Button variant='outline' mr={3} onClick={onClose}>
+                        Cancel
+                      </Button>
+                      <Button colorScheme='blue'>Save</Button>
+                    </DrawerFooter> */}
+                  </DrawerContent>
+                </Drawer>
+              {/* </Link> */}
+              </>
               {/* BOTON LOGIN  */}
               <Link as={ReactRouter} to="/login">
                 <Button display={{ base: "none", md: "inline-flex" }} m={5} mr={4} fontSize={"m"} fontWeight={600} color={"#C4C09D"} bg={"#1A1A1A"} hover={{ bg: "#D4B742" }}>
