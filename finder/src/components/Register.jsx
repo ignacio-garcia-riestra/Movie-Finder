@@ -45,7 +45,7 @@ const Register = () => {
   const handleError = e => {
     e.preventDefault();
     schema[e.target.name].validate(e.target.value)
-    .then(val => {
+    .then(() => {
       switch (e.target.name) {
         case'fname':
           setFname(e.target.value)           
@@ -83,7 +83,12 @@ const Register = () => {
       email,
       password,
       })
-      .then((tok) => swal({ text: 'Te registraste exitosamente!', icon: 'success' }))
+      .then(() => {
+        // modificacion para abrir Login
+        localStorage.setItem('registering', 'yes')
+        swal({ text: 'Te registraste exitosamente!', icon: 'success' })
+        navigate('/')
+      })
       .catch(err => swal({ text: err.response.data.mensaje, icon: 'error' }))
     } else {swal({ text: 'Verifique campos con datos erróneos', icon: 'error' })}
   }
@@ -133,8 +138,11 @@ const Register = () => {
                 </Button>
               </Stack>
               <Stack pt={6}>
-                <Text align={'center'}>
-                  Already a user? <Link to="/login" style={{ fontWeight: 'bold', color: "#53131e" }}>Login</Link>
+                <Text align={'center'} > 
+                  Already a user? 
+                  <Link to="/" style={{ paddingLeft: '6px', fontWeight: 'bold', color: "#53131e" }} >
+                    Login
+                  </Link>
                 </Text>
               </Stack>
             </Stack>
