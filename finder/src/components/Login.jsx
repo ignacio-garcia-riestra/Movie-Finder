@@ -1,13 +1,6 @@
 import {
   Flex,
   Box,
-  Drawer,
-  DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
   FormControl,
   FormLabel,
   Input,
@@ -187,7 +180,14 @@ const Login = () => {
               <Stack pt={6}>
                 <Text align={"center"}>
                   Not registred yet?
-                  <Link to="/" style={{ paddingLeft: '6px', fontWeight: "bold", color: "#53131e" }}>
+                  <Link
+                    to="/?register"
+                    style={{
+                      paddingLeft: "6px",
+                      fontWeight: "bold",
+                      color: "#53131e",
+                    }}
+                  >
                     Get an account
                   </Link>
                 </Text>
