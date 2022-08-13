@@ -78,7 +78,6 @@ const Login = () => {
           password,
         })
         .then((res) => {
-          console.log(res.data);
           localStorage.setItem("user", res.data.data.token);
           navigate("/");
         })

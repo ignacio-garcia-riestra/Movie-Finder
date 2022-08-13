@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  useNavigate,
-  Link as ReactRouter,
-} from "react-router-dom";
+import { useNavigate, Link as ReactRouter } from "react-router-dom";
 import {
   Box,
   Drawer,
@@ -24,12 +21,14 @@ import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import parseJwt from "../hooks/parseJwt";
 import Register from "./Register";
 import Login from "./Login";
+import Search from "./Search";
 
 export default function WithSubnavigation() {
   const navigate = useNavigate();
   const queryString = window.location.search.slice(1);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [isRegistering, setIsRegistering] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
   const token = localStorage.getItem("user");
   const user = token ? parseJwt(token) : {};
 
@@ -54,7 +53,12 @@ export default function WithSubnavigation() {
   useEffect(() => {
     setIsLoggingIn(queryString === "login");
     setIsRegistering(queryString === "register");
+    setIsSearching(queryString === "search");
   }, [queryString]);
+
+  useEffect(() => {
+    onClose();
+  }, [token]);
 
   return (
     <Box position={"fixed"} width={"100%"} paddingTop={"140px"}>
@@ -75,7 +79,9 @@ export default function WithSubnavigation() {
         >
           <IconButton
             onClick={onToggle}
-            icon={isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />}
+            icon={
+              isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
+            }
             variant={"ghost"}
             aria-label={"Toggle Navigation"}
           />
@@ -89,20 +95,21 @@ export default function WithSubnavigation() {
         </Flex>
 
         {/* BUSCADOR */}
-        <Link as={ReactRouter} to="/">
-          <Button
-            display={{ base: "none", md: "inline-flex" }}
-            m={5}
-            mr={4}
-            fontSize={"m"}
-            fontWeight={600}
-            color={"#C4C09D"}
-            bg={"#1A1A1A"}
-            _hover={{ bg: "#53131e" }}
-          >
-            Search
-          </Button>
-        </Link>
+        {/* <Link as={ReactRouter} to="/"> */}
+        <Button
+          display={{ base: "none", md: "inline-flex" }}
+          m={5}
+          mr={4}
+          fontSize={"m"}
+          fontWeight={600}
+          color={"#C4C09D"}
+          bg={"#1A1A1A"}
+          _hover={{ bg: "#53131e" }}
+          onClick={handlerDrawer}
+        >
+          Search
+        </Button>
+        {/* </Link> */}
 
         {/* BOTONES */}
 
@@ -186,24 +193,24 @@ export default function WithSubnavigation() {
                 Login
               </Button>
             </Stack>
-
-            <Drawer
-              isOpen={isOpen}
-              placement="right"
-              onClose={handleCloseDrawer}
-              size={"md"}
-              bg={"rgba(196, 192, 157, 0.3)"}
-            >
-              <DrawerContent bg={"rgba(0, 0, 0, 0)"}>
-                <DrawerCloseButton mr={3} />
-                <DrawerBody>
-                  {isRegistering && <Register />}
-                  {isLoggingIn && <Login />}
-                </DrawerBody>
-              </DrawerContent>
-            </Drawer>
           </Stack>
         )}
+        <Drawer
+          isOpen={isOpen}
+          placement="right"
+          onClose={handleCloseDrawer}
+          size={"md"}
+          bg={"rgba(196, 192, 157, 0.3)"}
+        >
+          <DrawerContent bg={"rgba(0, 0, 0, 0)"}>
+            <DrawerCloseButton mr={3} />
+            <DrawerBody>
+              {isRegistering && <Register />}
+              {isLoggingIn && <Login />}
+              {isSearching && <Search />}
+            </DrawerBody>
+          </DrawerContent>
+        </Drawer>
       </Flex>
     </Box>
   );
