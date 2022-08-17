@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import LandingPage from "./components/LandingPage";
-//import Search from "./components/Search";
+import Results from "./components/Results";
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          {/* <Route path="/search" element={<Search />} /> */}
+          <Route path="/results" element={<Results />} />
           <Route path="*" element={<Navigate to="404" />} />
         </Routes>
       </main>

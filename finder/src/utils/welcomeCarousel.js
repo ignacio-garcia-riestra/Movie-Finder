@@ -20,8 +20,6 @@ export default function Gallery () {
 
   if (!trendMovies.length) loadMovies()
 
-  console.log('TREND MOVIES ES ', trendMovies)
-
   return (
     trendMovies.length
     ? <div>

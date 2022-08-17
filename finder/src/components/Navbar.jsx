@@ -42,7 +42,7 @@ export default function WithSubnavigation() {
 
   const handleCloseDrawer = () => {
     onClose();
-    navigate("/");
+    //navigate("/");
   };
 
   const handleLogout = () => {
@@ -54,11 +54,14 @@ export default function WithSubnavigation() {
     setIsLoggingIn(queryString === "login");
     setIsRegistering(queryString === "register");
     setIsSearching(queryString === "search");
+    window.location.pathname === '/results' && onClose();
   }, [queryString]);
 
   useEffect(() => {
     onClose();
   }, [token]);
+
+  console.log(window.location.pathname)
 
   return (
     <Box position={"fixed"} width={"100%"} paddingTop={"140px"}>

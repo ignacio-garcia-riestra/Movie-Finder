@@ -12,30 +12,35 @@ import {
     RadioGroup,
     Heading,
     Text,
+    useDisclosure
   } from "@chakra-ui/react";
 import { useState } from "react";
-import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import swal from "@sweetalert/with-react";
   
 const Search = () => {
   const navigate = useNavigate();
-  const [value, setValue] = useState('movie')
+  const [value, setValue] = useState('movie');
+  const { onClose } = useDisclosure();
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.get("http://localhost:8000/api/user/login")
+    const keyword = e.target[3].value
+    const category = value
+    axios.get(`http://localhost:8000/api/releases/${category}/${keyword}`)
     .then((res) => {
+      !res.data.length && swal({ text: 'No results found for your search', icon: "error" })
       console.log(res.data);
-      //localStorage.setItem("user", res.data.data.token);
-      //navigate("/");
+      onClose();
+      navigate("/results");
     })
     .catch((err) => {
       console.log(err.response.data);
       swal({ text: err.response.data.mensaje, icon: "error" });
     });
-  };
+    e.target[3].value = ''
+  };  
   
   return (
     <Flex
@@ -60,9 +65,7 @@ const Search = () => {
           <Stack spacing={4}>
             <div>
               <FormControl id="search" isRequired>
-                {/* <FormLabel>Search</FormLabel> */}
                 <RadioGroup onChange={setValue} value={value}>
-                    {console.log('VALUE ', value)}
                   <Stack direction='row' mb={'18px'} spacing={4} >
                     <Radio 
                       value='movie' size={'lg'} 
@@ -78,27 +81,27 @@ const Search = () => {
                       </Text>
                     </Radio>
                     <Radio 
-                      value='tv show' size={'lg'} 
-                      borderColor={value === 'tv show' ? '#53131e' : 'black'} 
-                      borderWidth={value === 'tv show' ? '2px' : '1px'}
+                      value='tv' size={'lg'} 
+                      borderColor={value === 'tv' ? '#53131e' : 'black'} 
+                      borderWidth={value === 'tv' ? '2px' : '1px'}
                       colorScheme='black'
                     >
                       <Text pt={'5px'} fontSize={'20px'} 
-                        color={value === 'tv show' && '#53131e'} 
-                        fontWeight={value === 'tv show' && 'bold'}
+                        color={value === 'tv' && '#53131e'} 
+                        fontWeight={value === 'tv' && 'bold'}
                       >
                         TV Show
                       </Text>
                     </Radio>
                     <Radio 
-                      value='people' size={'lg'} 
-                      borderColor={value === 'people' ? '#53131e' : 'black'} 
-                      borderWidth={value === 'people' ? '2px' : '1px'}
+                      value='person' size={'lg'} 
+                      borderColor={value === 'person' ? '#53131e' : 'black'} 
+                      borderWidth={value === 'person' ? '2px' : '1px'}
                       colorScheme='black'
                     >
                       <Text pt={'5px'} fontSize={'20px'}
-                        color={value === 'people' && '#53131e'} 
-                        fontWeight={value === 'people' && 'bold'}
+                        color={value === 'person' && '#53131e'} 
+                        fontWeight={value === 'person' && 'bold'}
                       >
                         People
                       </Text>
@@ -112,7 +115,6 @@ const Search = () => {
                   borderColor={"black"}
                   placeholder={`Type a keyword to search by ${value}`}
                   _placeholder={{ opacity: 0.7, color: '#53131e', fontSize: '17px' }}
-                  //onChange={handleError}
                 />
               </FormControl>
             </div>

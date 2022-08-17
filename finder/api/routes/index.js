@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
-//const releases = require('./releases')
+const releases = require('./releases')
 //const users = require('./users')
 
-//router.use('/releases', releases)
+router.use('/releases', releases)
 //router.use('/users', users)
 
 router.get("/", (req, res, next) => {
