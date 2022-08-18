@@ -61,8 +61,6 @@ export default function WithSubnavigation() {
     onClose();
   }, [token]);
 
-  console.log(window.location.pathname)
-
   return (
     <Box position={"fixed"} width={"100%"} paddingTop={"140px"}>
       <Flex
@@ -73,7 +71,7 @@ export default function WithSubnavigation() {
         borderStyle="solid"
         borderColor={"rgba(0, 0, 0, 0)"}
         align="center"
-        bgGradient="linear(to-l, rgba(196, 192, 157, 0.3), rgba(181, 214, 178, 0.5))"
+        bgGradient="linear(to-l, rgba(196, 192, 157, 0.5), rgba(181, 214, 178, 0.7))"
       >
         <Flex
           flex={{ base: 1, md: "auto" }}
@@ -98,7 +96,6 @@ export default function WithSubnavigation() {
         </Flex>
 
         {/* BUSCADOR */}
-        {/* <Link as={ReactRouter} to="/"> */}
         <Button
           display={{ base: "none", md: "inline-flex" }}
           m={5}
@@ -112,7 +109,6 @@ export default function WithSubnavigation() {
         >
           Search
         </Button>
-        {/* </Link> */}
 
         {/* BOTONES */}
 

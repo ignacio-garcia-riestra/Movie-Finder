@@ -2,10 +2,7 @@ import {
     Flex,
     Box,
     FormControl,
-    FormLabel,
     Input,
-    InputGroup,
-    InputRightElement,
     Stack,
     Button,
     Radio,
@@ -15,12 +12,15 @@ import {
     useDisclosure
   } from "@chakra-ui/react";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import swal from "@sweetalert/with-react";
+import { useDispatch } from "react-redux";
+import { setResults } from "../store/results";
   
 const Search = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [value, setValue] = useState('movie');
   const { onClose } = useDisclosure();
   
@@ -31,12 +31,12 @@ const Search = () => {
     axios.get(`http://localhost:8000/api/releases/${category}/${keyword}`)
     .then((res) => {
       !res.data.length && swal({ text: 'No results found for your search', icon: "error" })
-      console.log(res.data);
       onClose();
-      navigate("/results");
+      dispatch(setResults(res.data))
+      .then(() => navigate("/results"))
+      ;
     })
     .catch((err) => {
-      console.log(err.response.data);
       swal({ text: err.response.data.mensaje, icon: "error" });
     });
     e.target[3].value = ''

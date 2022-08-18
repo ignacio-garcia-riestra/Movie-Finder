@@ -1,18 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Box } from "@chakra-ui/react";
+import GridWithResults from "../utils/resultsGrid";
+import { useNavigate } from "react-router";
 
 const Results = () => {
 
-  //getTrendyMovies()
+  const navigate = useNavigate()
+  const results = useSelector(state => state.results)
+
+  useEffect(()=> {
+    !results.length && navigate('/')
+  },[results])
 
   return (
-    /* aplicar bg #b5d6b2 */
     <>
       <Box
         minHeight={'full'}
         my={"-132px"}
         bgImage="https://i0.wp.com/taiwan-scene.com/wp-content/uploads/2021/09/taiwan-film-moview-cinema-taipei-eslite-art-house-1.jpg?resize=1100%2C633&ssl=1"
-        //boxSizing="350px"
         bgPosition="center"
         bgRepeat="no-repeat"
         bgSize={"cover"}
@@ -21,10 +27,9 @@ const Results = () => {
           paddingTop={"230"}
           paddingBottom={"40"}
         >
-          {/* <Gallery /> Reemplazar por grid */}
+          <GridWithResults results={results}/>
         </Box>
       </Box>
-      RESULTADOS
     </>
   );
 };
