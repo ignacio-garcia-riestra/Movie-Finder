@@ -1,4 +1,3 @@
-import '../App.css';
 import Gallery from '../utils/welcomeCarousel';
 import { Box } from "@chakra-ui/react";
 import React from "react";

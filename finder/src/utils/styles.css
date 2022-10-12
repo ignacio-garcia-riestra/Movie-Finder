@@ -13,3 +13,8 @@
     /* min-width: 90px; */
    /*  min-height: 144px */
 }
+
+.carousel-selected {
+    cursor: pointer;
+}
+

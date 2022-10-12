@@ -20,7 +20,7 @@ export default function Gallery () {
 
   const onClickItem = (e) => {
     const contentId = trendMovies[e].id
-    navigate(`/details/${contentId}`)
+    navigate(`/details/movie/${contentId}`)
   }
 
   if (!trendMovies.length) loadMovies()
@@ -32,7 +32,7 @@ export default function Gallery () {
           Popular movies this week
         </h1>
           <Carousel
-            //autoPlay  
+            autoPlay  
             interval="5000" 
             transitionTime="5000" 
             autoplaySpeed="500"
@@ -41,7 +41,7 @@ export default function Gallery () {
             onClickItem={onClickItem}
           >
             {trendMovies.map((movie, index) => (
-              <div key={index}>
+              <div key={index} className='carousel-selected'>
                 <img
                   className="carousel-img" 
                   src={'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/'+movie.poster_path} alt="" 

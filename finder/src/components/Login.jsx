@@ -17,6 +17,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import swal from "@sweetalert/with-react";
 import * as Yup from "yup";
+import "./styles.css"
 
 const Login = () => {
   const navigate = useNavigate();
@@ -91,12 +92,7 @@ const Login = () => {
   };
 
   return (
-    <Flex
-      minH={"50vh"}
-      align={"center"}
-      justify={"center"}
-      bg={"rgba(196, 192, 157, 0.8)"}
-    >
+    <Flex className="drawerContainer">
       <Stack spacing={6} mx={"auto"} maxW={"xl"} py={12} px={10}>
         <Stack align={"center"}>
           <Heading fontSize={"4xl"} textAlign={"center"} color={"#53131e"}>
@@ -104,12 +100,7 @@ const Login = () => {
           </Heading>
         </Stack>
         <form onSubmit={handleSubmit}>
-          <Box
-            rounded={"lg"}
-            bg={"rgba(196, 192, 157, 0.3)"}
-            boxShadow={"lg"}
-            p={8}
-          >
+          <Box rounded={"lg"} bg={"rgba(196, 192, 157, 0.3)"} boxShadow={"lg"} p={8}>
             <Stack spacing={4}>
               <div>
                 <FormControl id="email" isRequired>

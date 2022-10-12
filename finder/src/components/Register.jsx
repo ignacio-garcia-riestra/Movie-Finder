@@ -115,10 +115,7 @@ const Register = () => {
 
   return (
     <Flex
-      minH={"50vh"}
-      align={"center"}
-      justify={"center"}
-      bg={"rgba(196, 192, 157, 0.8)"}
+      className="drawerContainer"
     >
       <Stack spacing={6} mx={"auto"} maxW={"xl"} py={12} px={10}>
         <Stack align={"center"}>
@@ -127,12 +124,7 @@ const Register = () => {
           </Heading>
         </Stack>
         <form onSubmit={handleSubmit}>
-          <Box
-            rounded={"lg"}
-            bg={"rgba(196, 192, 157, 0.3)"}
-            boxShadow={"lg"}
-            p={8}
-          >
+          <Box rounded={"lg"} bg={"rgba(196, 192, 157, 0.3)"} boxShadow={"lg"} p={8}>
             <Stack spacing={4}>
               {content.inputs.map((input, index) => {
                 return (

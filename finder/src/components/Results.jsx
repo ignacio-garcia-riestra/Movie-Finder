@@ -11,13 +11,14 @@ const Results = () => {
 
   useEffect(()=> {
     !results.length && navigate('/')
-  },[results])
+  })
 
   return (
     <>
       <Box
-        minHeight={'full'}
-        my={"-132px"}
+        minHeight={'114vh'}
+        maxH={'2322px'}
+        mt={"-132px"}
         bgImage="https://i0.wp.com/taiwan-scene.com/wp-content/uploads/2021/09/taiwan-film-moview-cinema-taipei-eslite-art-house-1.jpg?resize=1100%2C633&ssl=1"
         bgPosition="center"
         bgRepeat="no-repeat"
